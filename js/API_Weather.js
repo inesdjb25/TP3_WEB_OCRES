@@ -28,7 +28,7 @@ class API_WEATHER{
 
   fetchThreeForecast(){
   return axios
-  .get(`${API_URL}?q=${this.city}&cnt=3&units=metric&appid=${API_KEY}`, {
+  .get(`${"https://api.openweathermap.org/data/2.5/forecast/daily"}?q=${this.city}&cnt=4&units=metric&appid=${API_KEY}`, {
     crossdomain: true
   })
 

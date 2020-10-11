@@ -48,21 +48,35 @@ function getThreeDayForecast(city){
       // Récupère la donnée d'une API
       const data = response.data;
 
+      const firstday = data.list[1];
+      const secondday = data.list[2];
+      const thridday = data.list[3];
+
+      // On récupère l'information principal du lendemain
+      const main = firstday.weather[0].main;
+     const description = firstday.weather[0].description;
+     const temp = firstday.temp.day;
+    const icon = apiWeather.getHTMLElementFromIcon(firstday.weather[0].icon);
+
+
       // On récupère l'information principal
-      const main = data.weather[0].main;
-      const description = data.weather[0].description;
-      const temp = data.main.temp;
-      const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
+     // const main = data.weather[0].main;
+     // const description = data.weather[0].description;
+     // const temp = data.main.temp;
+     // const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
 
       // Modifier le DOM
-      //document.getElementById('today-forecast-main').innerHTML = main;
-     // document.getElementById('today-forecast-more-info').innerHTML = description;
-     // document.getElementById('icon-weather-container').innerHTML = icon;
-     // document.getElementById('today-forecast-temp').innerHTML = `${temp}°C`;
+      document.getElementById('tomorrow-forecast-main').innerHTML = main;
+      document.getElementById('tomorrow-forecast-more-info').innerHTML = description;
+      document.getElementById('icon-weather-container-tomorrow').innerHTML = icon;
+     document.getElementById('tomorrow-forecast-temp').innerHTML = `${temp}°C`;
    
      
+    
+      console.log(main);
+      console.log(description);
       console.log(temp);
-      console.log(data);
+
 
     })
     .catch(function(error) {

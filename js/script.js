@@ -33,6 +33,8 @@ function start(city) {
 function actualiser() {
  var city = document.getElementById("city-input").value ;
 start(city);
+getThreeDayForecast(city);
+
 }
 
 

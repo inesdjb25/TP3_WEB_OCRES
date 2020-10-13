@@ -47,36 +47,36 @@ function getThreeDayForecast(city){
     .then(function(response) {
       // Récupère la donnée d'une API
       const data = response.data;
+      let i 
 
       const firstday = data.list[1];
       const secondday = data.list[2];
       const thridday = data.list[3];
 
-      // On récupère l'information principal du lendemain
-      const main = firstday.weather[0].main;
-     const description = firstday.weather[0].description;
-     const temp = firstday.temp.day;
-    const icon = apiWeather.getHTMLElementFromIcon(firstday.weather[0].icon);
-
-
-      // On récupère l'information principal
-     // const main = data.weather[0].main;
-     // const description = data.weather[0].description;
-     // const temp = data.main.temp;
-     // const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
-
-      // Modifier le DOM
-      document.getElementById('tomorrow-forecast-main').innerHTML = main;
-      document.getElementById('tomorrow-forecast-more-info').innerHTML = description;
-      document.getElementById('icon-weather-container-tomorrow').innerHTML = icon;
-     document.getElementById('tomorrow-forecast-temp').innerHTML = `${temp}°C`;
-   
+     for(i=1 ; i<4 ; i++) {
+        // On récupère l'information principal du lendemain
+      const main = data.list[i].weather[0].main;
+      const description = data.list[i].weather[0].description;
+      const temp = data.list[i].temp.day;
+     const icon = apiWeather.getHTMLElementFromIcon(data.list[i].weather[0].icon);
+ 
+ 
+       // On récupère l'information principal
+      // const main = data.weather[0].main;
+      // const description = data.weather[0].description;
+      // const temp = data.main.temp;
+      // const icon = apiWeather.getHTMLElementFromIcon(data.weather[0].icon);
+ 
+       // Modifier le DOM
+       document.getElementById('today-forecast-main-' + i +'').innerHTML = main;
+       document.getElementById('today-forecast-more-info-' + i +'').innerHTML = description;
+       document.getElementById('icon-weather-container-'+ i +'').innerHTML = icon;
+      document.getElementById('today-forecast-temp-'+ i +'').innerHTML = `${temp}°C`;
+    
+     }
      
     
-      console.log(main);
-      console.log(description);
-      console.log(temp);
-
+    
 
     })
     .catch(function(error) {
